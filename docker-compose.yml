@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mailserver:
+    build: .
+    image: gott50/mailserver
+    ports:
+      - "7070:7070"
+    environment:
+      - DEBUG=False
+    env_file:
+      - .env/.mail.env

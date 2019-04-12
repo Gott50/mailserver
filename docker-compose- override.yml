@@ -1,0 +1,8 @@
+version: '3'
+services:
+  mailserver:
+    volumes:
+      - ./src:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=development
