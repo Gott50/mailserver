@@ -26,7 +26,14 @@ def wrong_login_data():
         email = data["email"]
         username = data["username"]
 
-        return "%s: %s" % (email, username)
+        msg = Message(body="Please check your password settings",
+                      recipients=[email],
+                      subject="Wrong Login Data"
+                      )
+        mail.send(msg)
+
+
+        return "send mail to %s: %s" % (email, username)
 
 
     except KeyError as e
