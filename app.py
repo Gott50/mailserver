@@ -36,7 +36,7 @@ def wrong_login_data():
         return "send mail to %s: %s" % (email, username)
 
 
-    except KeyError as e
+    except KeyError as e:
         return 600 # TODO research right status code
 
 
