@@ -10,15 +10,6 @@ from settings import app
 mail = setup_mail(app)
 
 
-@app.route("/")
-def index():
-    msg = Message(body="Hello",
-                  recipients=["to@example.com"],
-                  subject="test"
-                  )
-    mail.send(msg)
-
-
 @app.route("/mail/wrong_login_data/", methods=['POST'])
 def wrong_login_data():
     try:
