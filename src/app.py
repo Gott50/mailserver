@@ -10,25 +10,27 @@ from settings import app
 mail = setup_mail(app)
 
 
-@app.route("/mail/wrong_login_data/", methods=['POST'])
-def wrong_login_data():
+@app.route("/mail/", methods=['POST'])
+def send():
     try:
         data = json.loads(request.data)
-        email = data["email"]
-        username = data["username"]
+        app.logger.warning("%s" % data)
 
-        msg = Message(body="Please check your password settings",
+        email = data["email"]
+        subject = data["subject"]
+        body = data["body"]
+        msg = Message(body=body,
                       recipients=[email],
-                      subject="Wrong Login Data"
-                      )
+                      subject=subject)
         mail.send(msg)
 
-
-        return "send mail to %s: %s" % (email, username)
-
+        result = "send Mail to: %s; with subject: %s; with body: %s" % (email, subject, body)
+        app.logger.warning(result)
+        return result
 
     except KeyError as e:
-        return 600 # TODO research right status code
+        app.logger.error("KeyError: %s" % e)
+        return "KeyError", 501  # Not Implemented
 
 
 if __name__ == '__main__':
