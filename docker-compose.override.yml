@@ -1,7 +1,6 @@
 version: '3'
 services:
   mailserver:
-    command: ["python", "app.py"]
     volumes:
       - ./src:/app
     environment:
