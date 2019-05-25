@@ -31,8 +31,8 @@ def send():
                 all_mails[username] = [data]
             app.logger.warning("all_mails: %s" % all_mails)
 
-        email = data["email"]
-        subject = data["subject"]
+        email = str(data["email"]).replace('\n', ' ')
+        subject = str(data["subject"]).replace('\n', ' ')
         body = data["body"]
         msg = Message(body=body,
                       recipients=[email],
